@@ -5,3 +5,6 @@
 Пример для определения тональности текста на английском языке с помощью библиотеки Hugging Face
 
 Тестирует GitHub Actions
+
+
+# For practice 2 of program engineering Tolstykh A.A.
