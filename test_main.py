@@ -24,3 +24,20 @@ def test_predict_negative():
     json_data = response.json()
     assert response.status_code == 200
     assert json_data['label'] == 'NEGATIVE'
+
+
+def test_predict_positive_two():
+    response = client.post("/predict/",
+                           json={"text": "Winnie-the-Pooh - best movie"})
+    json_data = response.json()
+    assert response.status_code == 200
+    assert json_data['label'] == 'POSITIVE'
+
+
+def test_predict_negative_two():
+    response = client.post("/predict/",
+                           json={"text": "I am crazy about the movie \"Winnie-the-Pooh\""})
+    json_data = response.json()
+    assert response.status_code == 200
+    assert json_data['label'] == 'NEGATIVE'
+
