@@ -4,3 +4,7 @@ uvicorn
 transformers
 torch
 httpx
+more information:
+https://www.uvicorn.org/
+https://fastapi.tiangolo.com/
+https://huggingface.co/docs/transformers/index
