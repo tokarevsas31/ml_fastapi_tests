@@ -3,4 +3,5 @@ fastapi
 uvicorn
 transformers
 torch
+pydantic
 httpx
