@@ -39,6 +39,8 @@ async def predict_from_file(upload_file: UploadFile = File(...)):
                 "message": "Not allowed file format: only .txt is allowed."
             }
         filename = secure_filename(upload_file.filename)
+        if not os.path.exists(UPLOAD_FOLDER):
+            os.mkdir(UPLOAD_FOLDER)
         destination = Path(UPLOAD_FOLDER, filename)
         with destination.open("wb") as buffer:
             shutil.copyfileobj(upload_file.file, buffer)
