@@ -6,3 +6,5 @@ An example of English text tone detection with [Hugging Face](https://huggingfac
 
 
 Tests GitHub Actions
+
+#add new branch  and pull request
