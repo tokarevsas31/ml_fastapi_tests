@@ -7,7 +7,7 @@ An example of English text tone detection with [Hugging Face](https://huggingfac
 
 Tests GitHub Actions
 
-Installation
+##Installation
 
 ```python
 pip install fastapi
@@ -17,8 +17,9 @@ Also
 ```python
 pip install uvicorn
 ```
-Create a “main.py” file with the following code.
+##Create a “main.py” file with the following code.
 
+```python
 from fastapi import FastAPI
 from transformers import pipeline
 from pydantic import BaseModel
@@ -40,3 +41,4 @@ def root():
 @app.post("/predict/")
 def predict(item: Item):
     return classifier(item.text)[0]
+```
