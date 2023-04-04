@@ -8,11 +8,15 @@ An example of English text tone detection with [Hugging Face](https://huggingfac
 Tests GitHub Actions
 
 Installation
+
 ```python
 pip install fastapi
+```
+Also
+
 ```python
 pip install uvicorn
-
+```
 Create a “main.py” file with the following code.
 
 from fastapi import FastAPI
