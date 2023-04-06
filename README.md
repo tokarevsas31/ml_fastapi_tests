@@ -2,7 +2,8 @@
 
 # An example of ML Application with the pretrained model and test.
 
-Пример для определения тональности текста на английском языке с помощью библиотеки Hugging Face
+An example of English text tone detection with [Hugging Face](https://huggingface.co/) library.
+
 
 Тестирует GitHub Actions
 
@@ -13,4 +14,7 @@
 Александр Гайфулин.
 Роман Николаенко.
 Денис Самаркин.
+
+
+Tests GitHub Actions
 
