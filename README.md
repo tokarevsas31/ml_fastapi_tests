@@ -5,4 +5,16 @@
 An example of English text tone detection with [Hugging Face](https://huggingface.co/) library.
 
 
+Тестирует GitHub Actions
+
+Сделано командой 12 в составе:
+
+Укулеле.
+Андрей Кузнецов.
+Александр Гайфулин.
+Роман Николаенко.
+Денис Самаркин.
+
+
 Tests GitHub Actions
+
