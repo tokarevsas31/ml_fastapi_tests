@@ -10,6 +10,11 @@ def test_read_main():
     assert response.json() == {"message": "Hello World"}
 
 
+def test_average_score():
+    response = client.get("/average_score/")
+    assert response.status_code == 200
+
+
 def test_predict_positive():
     response = client.post("/predict/",
                            json={"text": "I like machine learning!"})
