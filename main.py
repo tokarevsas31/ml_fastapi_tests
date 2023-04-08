@@ -19,3 +19,5 @@ def root():
 @app.post("/predict/")
 def predict(item: Item):
     return classifier(item.text)[0]
+
+#Привел код к стандартам PEP 8
