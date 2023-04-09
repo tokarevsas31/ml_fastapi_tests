@@ -4,6 +4,7 @@
 
 An example of English text tone detection with [Hugging Face](https://huggingface.co/) library.
 
+
 Tests GitHub Actions
 
 ## Нow to launch the app
@@ -23,3 +24,4 @@ curl -X 'POST'
 -H 'Content-Type: application/json'
 -d '{ "text": "I like machine learning!" }'
 ```
+
