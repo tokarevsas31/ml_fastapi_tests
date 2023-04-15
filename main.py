@@ -1,7 +1,14 @@
 from fastapi import FastAPI
 from transformers import pipeline
 from pydantic import BaseModel
+from typing import List
 
+class Items(BaseModel):
+    texts: List[str]
+
+@app.post("/predict_multiple/")
+def predict_multiple(items: Items):
+    return [classifier(text)[0] for text in items.texts]
 
 class Item(BaseModel):
     text: str
