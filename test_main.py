@@ -3,12 +3,10 @@ from main import app
 
 client = TestClient(app)
 
-
 def test_read_main():
     response = client.get("/")
     assert response.status_code == 200
     assert response.json() == {"message": "Hello World"}
-
 
 def test_predict_positive():
     response = client.post("/predict/",
@@ -17,10 +15,17 @@ def test_predict_positive():
     assert response.status_code == 200
     assert json_data['label'] == 'POSITIVE'
 
-
 def test_predict_negative():
     response = client.post("/predict/",
                            json={"text": "I hate machine learning!"})
     json_data = response.json()
     assert response.status_code == 200
     assert json_data['label'] == 'NEGATIVE'
+
+def test_predict_multiple():
+    response = client.post("/predict_multiple/",
+                           json={"texts": ["I like machine learning!", "I hate machine learning!"]})
+    json_data = response.json()
+    assert response.status_code == 200
+    assert json_data[0]['label'] == 'POSITIVE'
+    assert json_data[1]['label'] == 'NEGATIVE'
