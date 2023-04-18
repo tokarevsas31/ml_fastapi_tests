@@ -5,4 +5,12 @@
 An example of English text tone detection with [Hugging Face](https://huggingface.co/) library.
 
 
-Tests GitHub Actions
+On load in "/" API app, return message "Hello World'.
+
+On request in "/predict/' using POST method, app predict text tone.
+  - Input:
+  -- JSON:
+  --- text - string.
+  - Output:
+  -- JSON:
+  --- label - string ("POSITIVE" || "NEGATIVE").
