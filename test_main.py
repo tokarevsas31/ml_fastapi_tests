@@ -24,3 +24,11 @@ def test_predict_negative():
     json_data = response.json()
     assert response.status_code == 200
     assert json_data['label'] == 'NEGATIVE'
+    
+    
+def test_predict_empty_text():
+    response = client.post("/predict/", json={"text": ""})
+    json_data = response.json()
+    assert response.status_code == 422
+    assert "value_error.any_str.empty" in json_data["detail"][0]["msg"]    
+    
