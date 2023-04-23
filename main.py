@@ -13,9 +13,13 @@ classifier = pipeline("sentiment-analysis")
 
 @app.get("/")
 def root():
+    """Main endpoint for path. Return JSON object."""
+
     return {"message": "Hello World"}
 
 
 @app.post("/predict/")
 def predict(item: Item):
+    """Endpoint for prediction text tonality"""
+
     return classifier(item.text)[0]
