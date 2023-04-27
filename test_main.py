@@ -10,6 +10,16 @@ def test_read_main():
     assert response.json() == {"message": "Hello World"}
 
 
+def test_cannot_put_root():
+    response = client.post("/")
+    assert response.status_code == 405
+
+
+def test_cannot_post_root():
+    response = client.post("/")
+    assert response.status_code == 405
+
+
 def test_predict_positive():
     response = client.post("/predict/",
                            json={"text": "I like machine learning!"})
