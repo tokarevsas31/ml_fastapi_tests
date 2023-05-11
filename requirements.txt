@@ -1,6 +1,6 @@
 --extra-index-url https://download.pytorch.org/whl/cpu
-fastapi
-uvicorn
-transformers
-torch
-httpx
+fastapi==0.95.1
+uvicorn==0.22.0
+transformers==4.29.0
+torch==2.0.1
+httpx==0.24.0
