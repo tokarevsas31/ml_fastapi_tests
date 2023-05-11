@@ -1,16 +1,23 @@
 from fastapi import FastAPI
-from transformers import pipeline
 from pydantic import BaseModel
+from transformers import pipeline
 
 
 class Item(BaseModel):
     text: str
 
 
+class PredictResponse(BaseModel):
+    predict_result: dict
+
+
 app = FastAPI()
 classifier = pipeline("sentiment-analysis")
 
 
-@app.post("/predict/")
+@app.post(
+    "/predict/",
+    response_model=PredictResponse,
+)
 def predict(item: Item):
-    return classifier(item.text)[0]
+    return {"predict_result": classifier(item.text)[0]}
