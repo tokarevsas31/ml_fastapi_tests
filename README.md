@@ -31,12 +31,12 @@ The API documentation can be accessed at http://localhost:8000/docs (http://127.
 ### Docker
 To run the application using Docker, first build the Docker image:
 ```commandline
-docker build -t yourusername/fastapi-app .
+docker build -t myapp .
 ```
 
 Then run the Docker container:
 ```commandline
-docker run -p 8000:8000 yourusername/fastapi-app
+docker run -p 8080:8080 myapp
 ```
 
 The application will be accessible at http://localhost:8000.
