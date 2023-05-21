@@ -36,7 +36,7 @@ docker build -t myapp .
 
 Then run the Docker container:
 ```commandline
-docker run -p 8080:8080 myapp
+docker run -p 8000:8000 myapp
 ```
 
 The application will be accessible at http://localhost:8000.
