@@ -18,6 +18,8 @@ def root():
     return {"message": "Hello World"}
 
 
-@app.post("/predict/")
+@app.post("/predict/",
+          summary="Sentiment analysis",
+          description="Determining the sentiment of the text")
 def predict(item: Item):
     return classifier(item.text)[0]
