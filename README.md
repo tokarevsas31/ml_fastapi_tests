@@ -9,7 +9,7 @@ Tests GitHub Actions
 
 For startig Application you need give command:
 
-uvicorn task_3_api_v2:app
+uvicorn main:app
 
 For testing method GET of Application try:
 
