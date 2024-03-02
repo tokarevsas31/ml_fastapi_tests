@@ -6,3 +6,19 @@ An example of English text tone detection with [Hugging Face](https://huggingfac
 
 
 Tests GitHub Actions
+
+For startig Application you need give command:
+
+uvicorn main:app
+
+For testing method GET of Application try:
+
+curl -X 'GET' 'http://127.0.0.1:8000/'
+
+For testing method POST try:
+
+curl -X 'POST' 'http://127.0.0.1:8000/predict/' -H 'Content-Type: application/json' -d '{ "text": "Эта лодка дырявая калоша."}'
+
+Function of power:
+
+curl -X 'GET' 'http://127.0.0.1:8000/power/?base=2&exp=3'
