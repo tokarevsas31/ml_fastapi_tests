@@ -18,3 +18,7 @@ curl -X 'GET' 'http://127.0.0.1:8000/'
 For testing method POST try:
 
 curl -X 'POST' 'http://127.0.0.1:8000/predict/' -H 'Content-Type: application/json' -d '{ "text": "Эта лодка дырявая калоша."}'
+
+Function of power:
+
+curl -X 'GET' 'http://127.0.0.1:8000/power/?base=2&exp=3'
