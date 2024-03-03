@@ -6,3 +6,7 @@ An example of English text tone detection with [Hugging Face](https://huggingfac
 
 
 Tests GitHub Actions
+
+Мною был изменен файл main.py согласно регламенту PEP8, также были внесены дополнительный комментарии.
+
+Также я написал два дополнительных теста для проверки тональности текста в файле test_main.py
