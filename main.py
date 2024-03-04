@@ -10,7 +10,7 @@ class Item(BaseModel):
 
 app = FastAPI()
 classifier = pipeline("sentiment-analysis")
-
+en_fr_translator = pipeline("translation_en_to_fr")
 
 
 @app.get("/")
@@ -21,3 +21,8 @@ def root():
 @app.post("/predict/")
 def predict(item: Item):
     return classifier(item.text)[0]
+
+
+@app.post("/translate/")
+def translate(item: Item):
+    return en_fr_translator(item.text)[0]
