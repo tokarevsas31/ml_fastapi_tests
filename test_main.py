@@ -24,3 +24,11 @@ def test_predict_negative():
     json_data = response.json()
     assert response.status_code == 200
     assert json_data['label'] == '1 star'
+
+
+def test_score():
+    response = client.post("/score/", json={"text": "I really enjoy using this product. It's amazing!"})
+    score = response.json()
+    assert response.status_code == 200
+    assert isinstance(score, float)
+    assert 0 <= score <= 1
