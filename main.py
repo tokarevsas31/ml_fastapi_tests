@@ -23,8 +23,5 @@ def predict(item: Item):
 
 
 @app.post("/score/")
-async def score(text: str):
-    html_content = f"<html><body><h1>Text Received:</h1><p>{text}</p></body></html>"
-    return HTMLResponse(content=html_content)
-
-print(classifier("I hate machine learning!"))
+def score(item: Item):
+    return classifier(item.text)[0]['score']
