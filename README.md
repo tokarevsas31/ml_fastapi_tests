@@ -31,7 +31,7 @@ To get started with this project, follow these instructions:
 Use tools like cURL, Postman, or Python's `requests` library to interact with the API. Here's a `curl` example:
 
 curl -X 'POST'
-'http://localhost:8000/predict/'
+'http://127.0.0.1:8000/predict/'
 -H 'accept: application/json'
 -H 'Content-Type: application/json'
 -d '{
