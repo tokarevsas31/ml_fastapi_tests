@@ -15,3 +15,6 @@
 
 # Игнорируем pyvenv.cfg
 pyvenv.cfg
+
+# Игнорируем *.db файлы
+*.db
