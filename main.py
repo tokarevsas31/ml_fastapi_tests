@@ -61,3 +61,11 @@ async def predict(item: Item):
     await database.execute(query=query, values=values)
 
     return values
+
+
+@app.get("/predict/")
+async def get_request(request_id: str):
+    values = {"request_id": request_id}
+    query = "SELECT text, label, score FROM predictions WHERE id=:request_id"
+    result = await database.fetch_one(query=query, values=values)
+    return result
