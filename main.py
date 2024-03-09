@@ -26,3 +26,8 @@ en_ru_translator = pipeline("translation_en_to_ru", model="Helsinki-NLP/opus-mt-
 @app.post("/translation_en_to_ru/")
 def predict(item: Item):
     return en_ru_translator(item.text)[0]
+
+ru_en_translator = pipeline("translation_ru_to_en", model="Helsinki-NLP/opus-mt-ru-en")
+@app.post("/translation_ru_to_en/")
+def predict(item: Item):
+    return ru_en_translator(item.text)[0]
