@@ -24,18 +24,19 @@ database = Database("sqlite+aiosqlite:///app_logs.db")
 async def lifespan(app: FastAPI):
     # Connect to database on start
     await database.connect()
-    create_table_query = '''
+    create_table_query = """
             CREATE TABLE IF NOT EXISTS predictions
             (id TEXT PRIMARY KEY,
             text TEXT NOT NULL,
             label TEXT NOT NULL,
             score REAL NOT NULL)
-            '''
+            """
     # Create requests table if it doesn't exist
     await database.execute(query=create_table_query)
     yield
     # Disconnect from database on exit
     await database.disconnect()
+
 
 app = FastAPI(lifespan=lifespan)
 
@@ -53,10 +54,7 @@ async def predict(item: Item):
 
     prediction = classifier(item.text)[0]
 
-    values = {"id": request_id,
-              "text": item.text,
-              "label": prediction["label"],
-              "score": prediction["score"]}
+    values = {"id": request_id, "text": item.text, "label": prediction["label"], "score": prediction["score"]}
 
     query = "INSERT INTO predictions VALUES (:id, :text, :label, :score)"
 
