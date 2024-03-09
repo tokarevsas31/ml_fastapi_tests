@@ -4,7 +4,7 @@ from transformers import pipeline
 from pydantic import BaseModel
 from databases import Database
 import uuid
-# from local_db import db_init
+
 
 # Database connection
 database = Database("sqlite+aiosqlite:///requests.db")
@@ -23,18 +23,16 @@ class Request(BaseModel):
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Connect to database on start
-    # db_init()
     await database.connect()
     create_table_query = '''
             CREATE TABLE IF NOT EXISTS requests
             (id TEXT PRIMARY KEY,
             text TEXT NOT NULL,
-            prediction TEXT NOT NULL)
+            label TEXT NOT NULL,
+            score REAL NOT NULL)
             '''
+    # Create requests table if it doesn't exist
     await database.execute(query=create_table_query)
-    query = "INSERT INTO requests(id, text, prediction) VALUES (:id, :text, :prediction)"
-    values = {"id": "test_id", "text": "test_text", "prediction": "test_prediction"}
-    await database.execute(query=query, values=values)
     yield
     # Disconnect from database on exit
     await database.disconnect()
@@ -42,13 +40,23 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 classifier = pipeline("sentiment-analysis")
 
+
+@app.get("/")
+def root():
+    return {"message": "Hello World"}
+
+
 @app.post("/predict/")
 async def predict(item: Item):
     request_id = str(uuid.uuid4())
     prediction = classifier(item.text)[0]
 
-    query = "INSERT INTO requests(id, text, prediction) VALUES (:id, :text, :prediction)"
-    values = {"id": request_id, "text": item.text, "prediction": str(prediction)}
+    values = {"id": request_id,
+              "text": item.text,
+              "label": prediction["label"],
+              "score": prediction["score"]}
+
+    query = "INSERT INTO requests VALUES (:id, :text, :label, :score)"
     await database.execute(query=query, values=values)
 
-    return {"id": request_id, "prediction": prediction}
+    return values
