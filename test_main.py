@@ -24,3 +24,19 @@ def test_predict_negative():
     json_data = response.json()
     assert response.status_code == 200
     assert json_data['label'] == 'NEGATIVE'
+
+
+def test_predict_russian_positive():
+    response = client.post("/predict/",
+                           json={"text": "Я люблю учиться"})
+    json_data = response.json()
+    assert response.status_code == 200
+    assert json_data['label'] == 'POSITIVE'
+
+
+def test_predict_russian_negative():
+    response = client.post("/predict/",
+                           json={"text": "Я ненавижу тебя!"})
+    json_data = response.json()
+    assert response.status_code == 200
+    assert json_data['label'] == 'NEGATIVE'
