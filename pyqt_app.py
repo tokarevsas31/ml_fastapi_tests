@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QPushButton, QLineEdit
 from transformers import pipeline
 
+
 class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
@@ -25,7 +26,9 @@ class MainWindow(QWidget):
     def predict(self):
         text = self.text_input.text()
         cls_result = self.classifier(text)[0]
-        self.result_label.setText(f"This sentence is {cls_result['label'].lower()} with score {round(cls_result['score'] * 100, 2)}%")
+        label = f"This sentence is {cls_result['label'].lower()} with score {round(cls_result['score'] * 100, 2)}%"
+        self.result_label.setText(label)
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
