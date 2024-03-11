@@ -10,7 +10,9 @@ class Item(BaseModel):
 
 
 app = FastAPI()
-classifier = pipeline("sentiment-analysis")
+classifier = pipeline(
+    model='distilbert/distilbert-base-uncased-finetuned-sst-2-english'
+)
 
 
 @app.get("/")
@@ -23,7 +25,7 @@ def root():
     return {"message": "Hello World"}
 
 
-@app.post("/predict/")
+@app.post("/predict")
 def predict(item: Item):
     """Handler for /predict method.
 
@@ -45,7 +47,7 @@ def predict(item: Item):
             provider='mymemory'
         )
         text = translator.translate(text=text)
-    
+
     return classifier(text)[0]
 
 
