@@ -24,3 +24,10 @@ def test_predict_negative():
     json_data = response.json()
     assert response.status_code == 200
     assert json_data['label'] == 'NEGATIVE'
+
+
+def test_translate_en_ru():
+    response = client.post("/en-ru/",
+                           json={"text": "Hello World"})
+    assert response.status_code == 200
+    assert response.json() == "Приветствую мир"
