@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QPushButton, QLineEdit
 from transformers import pipeline
 
-
+# Pyqt app
 class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
