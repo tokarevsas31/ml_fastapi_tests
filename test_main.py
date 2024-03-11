@@ -24,3 +24,12 @@ def test_predict_negative():
     json_data = response.json()
     assert response.status_code == 200
     assert json_data['label'] == 'NEGATIVE'
+
+# test4    
+def test_predict():
+    response = client.post("/predict/",
+                          json={"text": "Today spring has come"})
+    json_data = response.json() 
+
+    assert response.status_code == 200
+    assert json_data['label'] == 'NEUTRAL'   
