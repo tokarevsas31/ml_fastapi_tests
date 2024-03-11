@@ -1,6 +1,8 @@
 --extra-index-url https://download.pytorch.org/whl/cpu
 fastapi
+httpx
 uvicorn
+sacremoses
+sentencepiece
 transformers
 torch
-httpx
