@@ -2,5 +2,9 @@
 fastapi
 uvicorn
 transformers
+sentencepiece
 torch
 httpx
+flake8
+pydantic
+pytest
