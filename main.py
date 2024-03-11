@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from transformers import pipeline
 from pydantic import BaseModel
+from translate import Translator
+import langid
 
 
 class Item(BaseModel):
@@ -31,7 +33,20 @@ def predict(item: Item):
     Returns:
         _type_: _description_
     """
-    return classifier(item.text)[0]
+    text = item.text
+
+    # determine the language of the text
+    lang, _ = langid.classify(text)
+    if lang != 'en':
+        # not English, translate it
+        translator = Translator(
+            to_lang='en',
+            from_lang=lang,
+            provider='mymemory'
+        )
+        text = translator.translate(text=text)
+    
+    return classifier(text)[0]
 
 
 if __name__ == '__main__':
