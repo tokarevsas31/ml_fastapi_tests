@@ -1,5 +1,5 @@
 from contextlib import asynccontextmanager
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from transformers import pipeline
 from pydantic import BaseModel
 from databases import Database
@@ -63,9 +63,22 @@ async def predict(item: Item):
     return values
 
 
+def is_valid_uuid(val):
+    try:
+        uuid.UUID(str(val))
+        return True
+    except ValueError:
+        return False
+
+
 @app.get("/predict/")
 async def get_request(request_id: str):
-    values = {"request_id": request_id}
-    query = "SELECT text, label, score FROM predictions WHERE id=:request_id"
-    result = await database.fetch_one(query=query, values=values)
-    return result
+    if is_valid_uuid(request_id):
+        values = {"request_id": request_id}
+        query = "SELECT text, label, score FROM predictions WHERE id=:request_id"
+        result = await database.fetch_one(query=query, values=values)
+        if not result:
+            raise HTTPException(status_code=404, detail="Provided uuid not found in previous predictions")
+        return result
+    else:
+        raise HTTPException(status_code=400, detail="Please provide valid uuid matching previous prediction")
