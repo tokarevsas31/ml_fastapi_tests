@@ -4,6 +4,7 @@ from transformers import pipeline
 from pydantic import BaseModel
 from databases import Database
 import uuid
+import uvicorn
 
 
 class Item(BaseModel):
