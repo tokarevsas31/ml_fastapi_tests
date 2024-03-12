@@ -20,9 +20,9 @@ def root():
 
 
 @app.post("/predict/")
-def predict(input: dict):  
-# функция для расчета модели, 
+# функция для расчета модели,
 # в "input" передаются текст
+def predict(input: dict):
     inputs = tokenizer(
         input["text"],
         max_length=512,
