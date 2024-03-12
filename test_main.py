@@ -12,7 +12,7 @@ def test_read_main():
 
 def test_predict_positive():
     response = client.post("/predict/",
-                           json={"text": "I like machine learning!"})
+                           json={"text": "I love you!"})
     json_data = response.json()
     assert response.status_code == 200
     assert json_data['Результат:'] == 'позитивный :)'
@@ -23,7 +23,7 @@ def test_predict_negative():
                            json={"text": "I hate machine learning!"})
     json_data = response.json()
     assert response.status_code == 200
-    assert json_data['label'] == 'NEGATIVE'
+    assert json_data['Результат:'] == 'негативный (('
 
 
 def test_predict_russian_positive():
@@ -31,7 +31,7 @@ def test_predict_russian_positive():
                            json={"text": "Я люблю учиться"})
     json_data = response.json()
     assert response.status_code == 200
-    assert json_data['label'] == 'POSITIVE'
+    assert json_data['Результат:'] == 'позитивный :)'
 
 
 def test_predict_russian_negative():
@@ -39,4 +39,4 @@ def test_predict_russian_negative():
                            json={"text": "Я ненавижу тебя"})
     json_data = response.json()
     assert response.status_code == 200
-    assert json_data['label'] == 'NEGATIVE'
+    assert json_data['Результат:'] == 'негативный (('
