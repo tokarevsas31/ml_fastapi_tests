@@ -4,7 +4,9 @@ from transformers import pipeline
 from pydantic import BaseModel
 from databases import Database
 import uuid
-
+import pathlib
+import uvicorn
+import logging
 
 class Item(BaseModel):
     text: str
@@ -61,3 +63,7 @@ async def predict(item: Item):
     await database.execute(query=query, values=values)
 
     return values
+
+
+if  __name__ == "__main__":
+    uvicorn.run(app, host="127.0.0.1", port=8000)
