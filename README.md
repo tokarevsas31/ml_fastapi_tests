@@ -9,11 +9,13 @@ Tests GitHub Actions
 
 For this project was uses the libraries:
 
+
 * fastapi
 * uvicorn
 * transformers
 * torch
 * httpx
+
 
 You need to clone this repository and install escential libraries using command 'pip install -r requirements.txt'
 
