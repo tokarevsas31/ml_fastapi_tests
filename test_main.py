@@ -43,7 +43,7 @@ def test_predict_russian_negative():
     assert json_data["Результат:"] == "негативный (("
 
 
-# тест 6    
+# тест 6   
 def test_predict_russian_neutral():
     response = client.post("/predict/", json={"text": "Сегодня наступила весна"})
     json_data = response.json()
