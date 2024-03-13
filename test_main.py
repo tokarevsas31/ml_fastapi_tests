@@ -45,7 +45,9 @@ def test_predict_russian_negative():
 
 # тест 6
 def test_predict_russian_neutral():
-    response = client.post("/predict/", json={"text": "Сегодня наступила весна"})
+    response = client.post("/predict/",
+                           json={"text": "Сегодня наступила весна"}
+                           )
     json_data = response.json()
     assert response.status_code == 200
     assert json_data["Результат:"] == "нейтральный"
