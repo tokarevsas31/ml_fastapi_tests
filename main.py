@@ -21,7 +21,7 @@ def root() -> dict:
     and demonstrates welcome message.
 
     Returns:
-        dict: Welcome message
+        dict: Welcome message.
     """
     return {"message": "Hello World"}
 
