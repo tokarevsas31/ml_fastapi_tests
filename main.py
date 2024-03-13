@@ -7,7 +7,7 @@ from transformers import BertTokenizerFast
 app = FastAPI()
 tokenizer = BertTokenizerFast.from_pretrained(
     "blanchefort/rubert-base-cased-sentiment"
-)
+    )
 model = AutoModelForSequenceClassification.from_pretrained(
     "blanchefort/rubert-base-cased-sentiment", return_dict=True
 )
@@ -17,7 +17,7 @@ result = ["нейтральный", "позитивный :)", "негативн
 @app.get("/")
 def root() -> dict:
     """
-    This function works from root 
+    This function works from root
     and demonstrates welcome message.
 
     Returns:
@@ -30,13 +30,12 @@ def root() -> dict:
 # функция для расчета модели,
 # в "input" передаются текст
 def predict(input: dict) -> dict:
-
     """
-    This function predicts 
+    This function predicts
 
     Args:
         input (dict): dict with text for prediction
-    
+
     Returns:
         dict: dict with the prediction of text sentiment
     """
