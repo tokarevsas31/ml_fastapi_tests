@@ -6,8 +6,25 @@ repos:
       - id: check-added-large-files
       - id: check-ast
       - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
       - id: end-of-file-fixer
       - id: check-yaml
       - id: check-merge-conflict
       - id: detect-private-key
       - id: debug-statements
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        args: ["--profile", "black", "--lines-after-imports", "2"]
+  - repo: https://github.com/psf/black
+    rev: 24.2.0
+    hooks:
+      - id: black
+        name: black (Python code formatter)
+        language_version: python3
+  - repo: https://github.com/PyCQA/flake8
+    rev: 7.0.0
+    hooks:
+      - id: flake8
+        args: ['--count', '--max-complexity=10', '--max-line-length=127', '--statistics']
