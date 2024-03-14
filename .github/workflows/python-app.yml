@@ -3,18 +3,14 @@
 
 name: Python application
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+on: [push, pull_request]
 
 permissions:
   contents: read
 
 jobs:
   build:
-
+    working-directory: ./src
     runs-on: ubuntu-latest
 
     steps:
