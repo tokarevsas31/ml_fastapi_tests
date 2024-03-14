@@ -34,7 +34,7 @@ __Реализация:__
 
 __Локальный запуск:__
 
-* Стянуть проект `git@github.com:DMax-w/ml_fastapi_tests.git`
+* Стянуть проект `git clone git@github.com:DMax-w/ml_fastapi_tests.git`
 * Перейти в проект `cd ml_fastapi_tests`
 * Подготовить окружение (_виртуальная среда, установка пакетов_) командой `make deps`
 * Запуск тестов `make test`
