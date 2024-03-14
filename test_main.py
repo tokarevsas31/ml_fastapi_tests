@@ -55,7 +55,7 @@ def test_get_prediction_invalid_uuid():
         response = client.get(f"/predict/?request_id={invalid_uuid}")
         assert response.status_code == 400
         assert response.json() == {
-            "detail": "Request query parameter 'request_id' must be a valid UUID."
+            "detail": "Please provide a valid uuid matching a previous prediction"
         }
 
 
