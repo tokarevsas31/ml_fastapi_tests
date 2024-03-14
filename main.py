@@ -1,23 +1,24 @@
 from fastapi import FastAPI
-from transformers import pipeline
-from pydantic import BaseModel
 
-
-class Item(BaseModel):
-    text: str
-
-
+import src.handler.find_object as fo
+import src.handler.classify_text as ct
 
 app = FastAPI()
-classifier = pipeline("sentiment-analysis")
 
 
-
+# метод приветствия для проверки работы сервера
 @app.get("/")
-def root():
-    return {"message": "Hello World"}
+async def healthcheck():
+    return {'message': 'Hello World!!!'}
 
 
-@app.post("/predict/")
-def predict(item: Item):
-    return classifier(item.text)[0]
+# метод поиска заданных объектов в картинке по ссылке
+@app.post("/find-object/")
+async def find_object(req: fo.Req):
+    return fo.find_object(req)
+
+
+# метод метод определения тональности текста
+@app.post("/classify-text/")
+def classify_text(req: ct.Req):
+    return ct.classify_text(req)
