@@ -2,10 +2,10 @@ from fastapi import APIRouter, Depends
 from schemas.sentiment import Item, Sentiment
 from services.sentiment import SentimentService, get_sentiment_service
 
-router = APIRouter()
+router = APIRouter(prefix="/predict")
 
 
-@router.post("/predict/", response_model=Sentiment)
+@router.post("", response_model=Sentiment)
 def predict(
         item: Item,
         sentiment_service: SentimentService = Depends(get_sentiment_service)
