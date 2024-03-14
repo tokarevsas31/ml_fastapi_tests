@@ -5,3 +5,7 @@ transformers
 torch
 httpx
 databases[aiosqlite]
+black
+isort
+flake8
+pre-commit
