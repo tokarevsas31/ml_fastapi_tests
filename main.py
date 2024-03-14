@@ -64,7 +64,7 @@ except Exception as e:
 
 @app.get("/")
 def root():
-    return {"message": "Welcome to the Prediction API"}
+    return {"message": "Hello World"}
 
 
 @app.post("/predict/")
