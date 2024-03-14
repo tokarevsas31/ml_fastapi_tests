@@ -1,3 +1,4 @@
+import argparse
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from transformers import pipeline
@@ -66,5 +67,9 @@ async def predict(item: Item):
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--host", type=str, default="127.0.0.1", help="Host IP address to bind the server")
+    args = parser.parse_args()
+
     cwd = pathlib.Path(__file__).parent.resolve()
-    uvicorn.run(app, host="127.0.0.1", port=8000, log_config=f"{cwd}/log.ini")
+    uvicorn.run(app, host=args.host, port=8000, log_config=f"{cwd}/log.ini")
