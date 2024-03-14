@@ -1,12 +1,13 @@
 import argparse
-from contextlib import asynccontextmanager
-from fastapi import FastAPI, HTTPException
-from transformers import pipeline
-from pydantic import BaseModel
-from databases import Database
-import uuid
-import uvicorn
 import pathlib
+import uuid
+from contextlib import asynccontextmanager
+
+import uvicorn
+from databases import Database
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from transformers import pipeline
 
 
 class Item(BaseModel):
@@ -39,7 +40,9 @@ async def lifespan(app: FastAPI):
         # Create requests table if it doesn't exist
         await database.execute(query=create_table_query)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to initialize database: {e}")
+        raise HTTPException(
+            status_code=500, detail=f"Failed to initialize database: {e}"
+        )
     yield
     # Disconnect from database on exit
     await database.disconnect()
@@ -74,7 +77,12 @@ async def predict(item: Item):
         prediction = classifier(item.text)[0]
     except Exception as e:  # Catching any unexpected errors during prediction
         raise HTTPException(status_code=500, detail=f"Prediction error: {e}")
-    values = {"id": request_id, "text": item.text, "label": prediction["label"], "score": prediction["score"]}
+    values = {
+        "id": request_id,
+        "text": item.text,
+        "label": prediction["label"],
+        "score": prediction["score"],
+    }
     query = "INSERT INTO predictions VALUES (:id, :text, :label, :score)"
     await database.execute(query=query, values=values)
     return values
@@ -83,18 +91,28 @@ async def predict(item: Item):
 @app.get("/predict/", response_model=PredictionResponse)
 async def get_request(request_id: str):
     if not is_valid_uuid(request_id):
-        raise HTTPException(status_code=400, detail="Please provide a valid uuid matching a previous prediction")
+        raise HTTPException(
+            status_code=400,
+            detail="Please provide a valid uuid matching a previous prediction",
+        )
     values = {"request_id": request_id}
     query = "SELECT text, label, score FROM predictions WHERE id=:request_id"
     result = await database.fetch_one(query=query, values=values)
     if not result:
-        raise HTTPException(status_code=404, detail="Provided uuid not found in previous predictions")
+        raise HTTPException(
+            status_code=404, detail="Provided uuid not found in previous predictions"
+        )
     return PredictionResponse(**result)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--host", type=str, default="127.0.0.1", help="Host IP address to bind the server")
+    parser.add_argument(
+        "--host",
+        type=str,
+        default="127.0.0.1",
+        help="Host IP address to bind the server",
+    )
     args = parser.parse_args()
     cwd = pathlib.Path(__file__).parent.resolve()
     uvicorn.run(app, host=args.host, port=8000, log_config=f"{cwd}/log.ini")
