@@ -89,7 +89,7 @@ async def predict(item: Item):
 
 
 @app.get("/predict/", response_model=PredictionResponse)
-async def get_request(request_id: str):
+async def get_previous_prediction(request_id: str):
     if not is_valid_uuid(request_id):
         raise HTTPException(
             status_code=400,
