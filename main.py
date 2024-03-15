@@ -14,4 +14,6 @@ def root():
 
 @app.post("/predict/")
 def predict(item: Item):
+    if len(item.text) <= 10:
+        return {"message": "The text must contain at least 10 characters"}
     return classifier(item.text)[0]
