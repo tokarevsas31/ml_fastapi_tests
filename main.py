@@ -12,7 +12,6 @@ app = FastAPI()
 classifier = pipeline("sentiment-analysis")
 
 
-
 @app.get("/")
 def root():
     return {"message": "Hello World"}
