@@ -29,4 +29,4 @@ def test_predict_negative():
 def test_get():
     response = client.get("/predict/")
     assert response.status_code == 200
-    assert response.json() == {"message": "Some message"}
+    assert response.json() == {"message": "Some message."}
