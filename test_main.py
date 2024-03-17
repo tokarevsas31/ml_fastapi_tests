@@ -29,4 +29,4 @@ def test_predict_negative():
 def test_get():
     response = client.get("/predict/")
     assert response.status_code == 200
-    assert response.json() == {"message": "Use POST + url to JPG image for recognition."}
+    assert response.json() == {"message": "Some message."}
