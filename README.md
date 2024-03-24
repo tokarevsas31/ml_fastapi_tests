@@ -8,7 +8,10 @@
 
 Для работы с приложением может понадобиться выполнить следующие команды:
 ```python
-apt-get install software-properties-common
-sudo apt-get update
-sudo apt-get install ffmpeg
+--extra-index-url https://download.pytorch.org/whl/cpu
+fastapi
+uvicorn
+transformers
+torch
+httpx
 ```
