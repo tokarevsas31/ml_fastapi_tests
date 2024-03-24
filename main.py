@@ -12,6 +12,25 @@ app = FastAPI()
 classifier = pipeline("sentiment-analysis")
 
 
+@app.on_event("startup")
+def load_classifier():
+    """
+    Обработчик события запуска приложения.
+    Загружает классификатор настроения приложения из библиотеки transformers.pipeline.
+    """
+    global classifier
+    classifier = pipeline("sentiment-analysis")
+
+
+@app.on_event("shutdown")
+def close_classifier():
+    """
+    Обработчик события остановки приложения.
+    Освобождает ресурсы, связанные с классификатором.
+    """
+    global classifier
+    classifier = None
+
 
 @app.get("/")
 def root():
