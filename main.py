@@ -9,7 +9,7 @@ class Item(BaseModel):
 
 
 app = FastAPI()
-classifier = pipeline("sentiment-analysis")
+classifier = pipeline("sentiment-analysis", "blanchefort/rubert-base-cased-sentiment")
 
 
 
@@ -20,4 +20,9 @@ def root():
 
 @app.post("/predict/")
 def predict(item: Item):
+    return classifier(item.text)[0]
+
+
+@app.post("/predict_test")
+def predict_test(item: Item):
     return classifier(item.text)[0]
