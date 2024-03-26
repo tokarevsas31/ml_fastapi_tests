@@ -18,7 +18,7 @@ def test_predict_positive():
     assert json_data['label'] == 'POSITIVE'
 
 
-def test_predict_positive():
+def test_predict_positive_2():
     response = client.post("/predict/",
                            json={"text": "I like to play football!"})
     json_data = response.json()
@@ -34,10 +34,9 @@ def test_predict_negative():
     assert json_data['label'] == 'NEGATIVE'
 
 
-def test_predict_negative():
+def test_predict_negative_2():
     response = client.post("/predict/",
                            json={"text": "I hate playing football"})
     json_data = response.json()
     assert response.status_code == 200
     assert json_data['label'] == 'NEGATIVE'
-
