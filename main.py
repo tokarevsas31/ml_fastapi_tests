@@ -7,10 +7,14 @@ class Item(BaseModel):
     text: str
 
 
-
 app = FastAPI()
-classifier = pipeline("sentiment-analysis")
+classifier = pipeline("sentiment-analysis",
+                      "blanchefort/rubert-base-cased-sentiment")
 
+
+@app.get("/model")
+def get_model():
+    return {"message": "ML model: blanchefort/rubert-base-cased-sentiment"}
 
 
 @app.get("/")
