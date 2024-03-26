@@ -18,6 +18,11 @@ def root():
     return {"message": "Hello World"}
 
 
+@app.get("/model")
+def get_model():
+    return {"message": "ML model: blanchefort/rubert-base-cased-sentiment"}
+
+
 @app.post("/predict/")
 def predict(item: Item):
     return classifier(item.text)[0]
