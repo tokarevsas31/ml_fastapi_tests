@@ -12,6 +12,10 @@ app = FastAPI()
 classifier = pipeline("sentiment-analysis")
 
 
+@app.get("/model")
+def get_model():
+    return {"message": "ML model: blanchefort/rubert-base-cased-sentiment"}
+
 
 @app.get("/")
 def root():
