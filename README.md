@@ -6,3 +6,4 @@ An example of English text tone detection with [Hugging Face](https://huggingfac
 
 
 Tests GitHub Actions
+**Приложение написано для определения токсичности фразы. Мы предлагаем использовать для этой задачи модель ML blanchefort/rubert-base-cased-sentiment**
