@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 from transformers import pipeline
 from pydantic import BaseModel
-
+description = """
+PredictorApp API helps you predict the correct emotional color of the text. 🚀
+"""
 
 description = """
 PredictorApp API helps you predict the correct emotional color of the text.
@@ -27,7 +29,6 @@ app = FastAPI(title="PredictorApp",
     summary="It will helps you",
     version="0.0.1",
 )
-classifier = pipeline("sentiment-analysis")
 
 
 @app.get("/")
