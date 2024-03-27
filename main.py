@@ -9,7 +9,6 @@ class Item(BaseModel):
 
 app = FastAPI(
     title="Predictor",
-    description=description,
     summary="This app will predict you the correct emotional color of the text (probaply)",
     version="0.0.1",
 )
