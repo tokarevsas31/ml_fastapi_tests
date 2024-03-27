@@ -1,8 +1,11 @@
-[![Tests](https://github.com/tokarevsas31/ml_fastapi_tests/actions/workflows/python-app.yml/badge.svg)](https://github.com/tokarevsas31/ml_fastapi_tests/actions/workflows/python-app.yml)
+Приложение для определения тональности текста.
 
-# An example of ML Application with the pretrained model and test.
-
-An example of English text tone detection with [Hugging Face](https://huggingface.co/) library.
-
-
-Tests GitHub Actions
+Данная инструкция написана для ОС на ядре Linux:
+1. Откройте терминал
+2. Создайте папку для проекта с помощью команды "mkdir (Название папки)". Замените "(название папки)" на свое
+3. Перейдите в созданную папку с помощью команды "cd (имя папки)"
+4. Введите команду "git clone https://github.com/Natalia-mswm/ml_fastapi_tests.git"
+5. Введите команду "pip install -r requirements.txt"
+6. Введите команду uvicorn main:app --reload"
+7. Чтобы перейти к предсказанию, в поисковой строке добавьте "/predict/"
+8. При необходимости в файле "main.py" замените в строке 18 "Hello World" на свою фразу
